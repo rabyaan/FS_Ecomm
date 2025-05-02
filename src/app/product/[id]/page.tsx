@@ -14,8 +14,13 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 
+interface ProductDetailPageProps {
+  params: {
+    id: string
+  }
+}
 
-export default async function ProductDetailPage({ params }: { params: { id: string } }) {
+export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
   const product = await getProductById(Number(params.id))
 
   if (!product) return notFound()

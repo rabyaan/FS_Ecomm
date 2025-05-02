@@ -27,12 +27,18 @@ async function getProductsByBrandId(brandId: number) {
   return allProducts.filter(product => product.brandId === brandId)
 }
 
-export default async function BrandDetailPage({ params }: { params: { id: string } }) {
+interface BrandDetailPageProps {
+  params: {
+    id: string
+  }
+}
+
+export default async function BrandDetailPage({ params }: BrandDetailPageProps) {
   const brandId = Number(params.id)
   const brand = await getBrandById(brandId)
-  
+
   if (!brand) return notFound()
-  
+
   const products = await getProductsByBrandId(brandId)
 
   return (
